@@ -1,16 +1,18 @@
 package com.iot.admin.service;
 
 import com.iot.dto.SIMCardDto;
-import com.iot.exception.UpdateDeviceStatusException;
+import com.iot.exception.BusinessException;
+import com.iot.model.SIMCard;
 
 import java.util.List;
 
 public interface DeviceAdminService {
 
     List<SIMCardDto> getAllWaitingForActivationDevices();
+
     //remove device
-    void removeDevice(Integer deviceId);
+    void removeDeviceByDeviceId(Integer deviceId, Integer userId);
 
     //update device status
-    SIMCardDto updateDeviceStatus(SIMCardDto simCardDto) throws UpdateDeviceStatusException;
+    SIMCardDto updateDeviceStatus(SIMCardDto simCardDto, Integer userId) throws BusinessException;
 }

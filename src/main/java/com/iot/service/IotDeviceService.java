@@ -1,7 +1,6 @@
 package com.iot.service;
 
 import com.iot.dto.SIMCardDto;
-import com.iot.exception.WaitingForActivationDeviceNotFoundException;
 
 import java.util.List;
 

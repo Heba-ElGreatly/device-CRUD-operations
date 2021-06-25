@@ -4,12 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iot.admin.dao.DeviceAdminRepository;
 import com.iot.dto.SIMCardDto;
-import com.iot.exception.UserPermissionException;
 import com.iot.model.SIMCard;
-import com.iot.util.DeviceUtil;
-import com.sun.deploy.net.HttpResponse;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +20,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
 
@@ -81,11 +77,6 @@ public class DeviceAdminResourceIntegrationTest {
         device = new ObjectMapper().readValue(response.getBody(), SIMCard.class);
         device.setStatus("deactivated");
         restTemplate.put(getRootUrl() + "/admin/update-device?userId=" + userId, device);
-//        ResponseEntity<String> updatedResponse =
-//                restTemplate.exchange(getRootUrl() + "/admin/get/" + deviceId, HttpMethod.GET, entity, String.class);
-//        System.out.println(updatedResponse);
-//        updatedDevice = new ObjectMapper().readValue(updatedResponse.getBody(), SIMCard.class);
-//        assertEquals("deactivated", updatedDevice.getStatus());
         Optional<SIMCard> simCardFromDB = adminRepository.findById(deviceId);
         assertEquals("deactivated",simCardFromDB.get().getStatus());
     }
@@ -93,7 +84,7 @@ public class DeviceAdminResourceIntegrationTest {
     @Test
     public void deleteDeviceByDeviceIdTest() {
         SIMCard device = null;
-        Integer deviceId = 2, userId = 2;
+        Integer deviceId = 2, userId = 1;
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
         restTemplate.delete(getRootUrl() + "/admin/remove-device?userId="+userId+"&deviceId="+deviceId);

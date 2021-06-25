@@ -4,7 +4,6 @@ import com.iot.admin.service.DeviceAdminService;
 import com.iot.dto.SIMCardDto;
 import com.iot.exception.DeviceNotFoundException;
 import com.iot.exception.UserPermissionException;
-import com.iot.model.SIMCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;

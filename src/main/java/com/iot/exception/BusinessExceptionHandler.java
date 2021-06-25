@@ -40,4 +40,10 @@ public class BusinessExceptionHandler  {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(),request.getDescription(true));
         return new ResponseEntity<>(errorDetails,HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(UpdateDeviceStatusException.class)
+    public ResponseEntity<?> resourceNotFoundException(UpdateDeviceStatusException ex, WebRequest request){
+        ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(),request.getDescription(true));
+        return new ResponseEntity<>(errorDetails,HttpStatus.NOT_FOUND);
+    }
 }

@@ -1,7 +1,6 @@
 package com.iot;
 
 import com.iot.dao.IotDeviceRepository;
-import com.iot.dao.UserRepository;
 import com.iot.model.Operation;
 import com.iot.model.SIMCard;
 import com.iot.service.IotDeviceService;
@@ -12,10 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 

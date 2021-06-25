@@ -9,8 +9,6 @@ import java.util.Optional;
 
 public interface DeviceAdminRepository extends JpaRepository<SIMCard, Integer> {
 
-//    void removeDevice();
-
     @Query("select simCard from SIMCard simCard where simCard.simNumber=:simNumber and simCard.operation.operationCode =:operationCode")
     Optional<SIMCard> findBySIMNumberAndOperationCode(@Param("simNumber") String simNumber, @Param("operationCode") String operationCode);
 }

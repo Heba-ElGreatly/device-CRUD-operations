@@ -8,4 +8,5 @@ import java.util.List;
 public interface IotDeviceService {
 
     List<SIMCardDto> getAllWaitingForActivationDevices();
+    SIMCardDto getDeviceByDeviceId(Integer deviceId);
 }

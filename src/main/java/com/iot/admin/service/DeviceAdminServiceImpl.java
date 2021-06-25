@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DeviceAdminServiceImpl implements DeviceAdminService {
@@ -40,7 +41,14 @@ public class DeviceAdminServiceImpl implements DeviceAdminService {
     }
 
     @Override
-    public void removeDeviceByDeviceId(Integer deviceId, Integer userId) {
+    public Optional<SIMCardDto> getDeviceById(Integer deviceId) {
+//        return Optional.ofNullable(adminRepository.findById(deviceId)
+//                .orElseThrow(() -> new UserNotFoundException()));
+        return Optional.ofNullable(deviceService.getDeviceByDeviceId(deviceId));
+    }
+
+    @Override
+    public void removeDeviceByDeviceId(Integer deviceId, Integer userId) throws UserPermissionException{
         checkingUserPermissions(userId);
         adminRepository.deleteById(deviceId);
     }
@@ -59,8 +67,7 @@ public class DeviceAdminServiceImpl implements DeviceAdminService {
         existingSimCard.setSimNumber(existingSimCard.getSimNumber());
         existingSimCard.setOperation(existingSimCard.getOperation());
 
-        SIMCard updatedDevice = adminRepository.save(existingSimCard);
-        return simCardMapper.mapEntityToDTO(updatedDevice);
+        return simCardMapper.mapEntityToDTO(adminRepository.save(existingSimCard));
     }
 
     private void checkingUserPermissions(Integer userId) {

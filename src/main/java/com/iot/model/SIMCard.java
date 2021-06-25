@@ -1,16 +1,17 @@
 package com.iot.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Data
+@Builder
 @Entity
 @Table(name = "SIMCard")
 @ToString(exclude = "operation")
 @EqualsAndHashCode(exclude = "operation")
+@NoArgsConstructor
+@AllArgsConstructor
 public class SIMCard {
 
     @Id

@@ -2,6 +2,7 @@ package com.iot.service;
 
 import com.iot.dao.IotDeviceRepository;
 import com.iot.dto.SIMCardDto;
+import com.iot.exception.DeviceNotFoundException;
 import com.iot.exception.WaitingForActivationDeviceNotFoundException;
 import com.iot.mapper.SIMCardMapper;
 import com.iot.model.SIMCard;
@@ -27,5 +28,11 @@ public class IotDeviceServiceImpl implements IotDeviceService {
                 .orElseThrow(() -> new WaitingForActivationDeviceNotFoundException());
 
         return waitingForActivationDevices.stream().map(device -> simCardMapper.mapEntityToDTO(device)).collect(Collectors.toList());
+    }
+
+    @Override
+    public SIMCardDto getDeviceByDeviceId(Integer deviceId) {
+         SIMCard device = iotDeviceRepository.findById(deviceId).orElseThrow(() -> new DeviceNotFoundException());
+         return simCardMapper.mapEntityToDTO(device);
     }
 }

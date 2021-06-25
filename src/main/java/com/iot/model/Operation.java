@@ -1,16 +1,20 @@
 package com.iot.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Data
+@Builder
 @Entity
 @Table(name ="Operation")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Operation {
 
     @Id

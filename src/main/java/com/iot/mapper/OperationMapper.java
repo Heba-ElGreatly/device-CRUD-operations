@@ -9,16 +9,18 @@ import org.springframework.stereotype.Service;
 public class OperationMapper {
 
     public Operation mapDtoToEntity(OperationDto operationDto){
-        Operation operation = new Operation();
-        operation.setOperationName(operationDto.getOperationName());
-        operation.setOperationCode(operationDto.getOperationCode());
+        Operation operation = Operation.builder()
+                .operationName(operationDto.getOperationName())
+                .operationCode(operationDto.getOperationCode())
+                .build();
         return operation;
     }
 
     public OperationDto mapEntityToDTO(Operation operation){
-        OperationDto dto = new OperationDto();
-        dto.setOperationName(operation.getOperationName());
-        dto.setOperationCode(operation.getOperationCode());
+        OperationDto dto = OperationDto.builder()
+                .operationName(operation.getOperationName())
+                .operationCode(operation.getOperationCode())
+                .build();
         return dto;
     }
 }

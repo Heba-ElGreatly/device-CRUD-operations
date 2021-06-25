@@ -12,20 +12,21 @@ public class SIMCardMapper {
     private OperationMapper operationMapper;
 
     public SIMCard mapDtoToEntity(SIMCardDto simCardDto){
-        SIMCard simCard = new SIMCard();
-        simCard.setSimNumber(simCardDto.getSimNumber());
-        simCard.setCountryName(simCardDto.getCountryName());
-        simCard.setStatus(simCardDto.getStatus());
+        SIMCard simCard = SIMCard.builder()
+                .simNumber(simCardDto.getSimNumber())
+                .countryName(simCardDto.getCountryName())
+                .status(simCardDto.getStatus()).build();
         simCard.setOperation(operationMapper.mapDtoToEntity(simCardDto.getOperation()));
         return simCard;
     }
 
     public SIMCardDto mapEntityToDTO(SIMCard simCard){
-        SIMCardDto simCardDto = new SIMCardDto();
-        simCardDto.setSimNumber(simCard.getSimNumber());
-        simCardDto.setCountryName(simCard.getCountryName());
-        simCardDto.setStatus(simCard.getStatus());
-        simCardDto.setOperation(operationMapper.mapEntityToDTO(simCard.getOperation()));
+        SIMCardDto simCardDto = SIMCardDto.builder()
+                .simNumber(simCard.getSimNumber())
+                .countryName(simCard.getCountryName())
+                .status(simCard.getStatus())
+                .operation(operationMapper.mapEntityToDTO(simCard.getOperation()))
+                .build();
         return simCardDto;
     }
 }
